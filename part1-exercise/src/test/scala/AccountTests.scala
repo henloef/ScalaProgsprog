@@ -1,4 +1,3 @@
-import com.sun.javafx.tools.packager.Main
 import org.scalatest.FunSuite
 import exceptions._
 
