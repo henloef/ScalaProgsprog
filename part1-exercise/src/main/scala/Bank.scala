@@ -5,15 +5,13 @@ object Bank {
   private var idCounter: Int = 0
   
   def transaction(from: Account, to: Account, amount: Double): Unit = {
-    if(from.getBalanceAmount < amount){
-      throw new NoSufficientFundsException("Insufficient funds")
-    }
+    if(from.getBalanceAmount < amount) throw new NoSufficientFundsException("Insufficient funds")
     else if(amount <= 0){
-      throw new IllegalAmountException("blbk")
+      throw new IllegalAmountException("Must be larger than zero")
     }
     else {
-      from.withdraw(amount)
-      to.deposit(amount)
+      from withdraw amount
+      to deposit amount
     }
 
 

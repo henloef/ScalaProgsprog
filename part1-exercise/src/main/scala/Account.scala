@@ -4,28 +4,24 @@ class Account(initialBalance: Double, val uid: Int = Bank getUniqueId) {
   var balance: Double = initialBalance
   
   def withdraw(amount: Double): Unit = {
-    this.synchronized {
+    this.synchronized  { //thread safety
       if (amount > getBalanceAmount) {
-        throw new NoSufficientFundsException();
+        throw new NoSufficientFundsException("Insufficient funds");
       }
-      else if (amount < 0) {
-        throw new IllegalAmountException()
-      }
+      else if (amount < 0) throw new IllegalAmountException("Amount must be positive.")
       balance = balance - amount
     }
-  } //Implement
+  }
   
   def deposit(amount: Double): Unit = {
     this.synchronized {
-      if (amount < 0) {
-        throw new IllegalAmountException("Bullshit")
-      }
+      if (amount < 0) throw new IllegalAmountException("Amount must be positive.")
       balance = balance + amount
     }
-  } //Implement
+  }
   
   def getBalanceAmount: Double = {
-    return balance;
-  }//Implement
+    balance;
+  }
 
 }
